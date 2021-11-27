@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "206A298B-178A-462D-91C3-B31C89F8C3E5"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "26249DE7-C2E4-44B1-80F0-7949C80F8BA2"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "M1/ScoreModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "18"
+            endingLineNumber = "18"
+            landmarkName = "init()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "26249DE7-C2E4-44B1-80F0-7949C80F8BA2 - c3cb625293fc8797"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "M1.ScoreModel.__allocating_init() -&gt; M1.ScoreModel"
+                  moduleName = "M1"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/liu/Desktop/CourseWork/246P/M1/M1/M1/ScoreModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "32">
+               </Location>
+               <Location
+                  uuid = "26249DE7-C2E4-44B1-80F0-7949C80F8BA2 - ed7736fb32d587a3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "M1.ScoreModel.init() -&gt; M1.ScoreModel"
+                  moduleName = "M1"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/liu/Desktop/CourseWork/246P/M1/M1/M1/ScoreModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "12"
+                  endingLineNumber = "12"
+                  offsetFromSymbolStart = "104">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
