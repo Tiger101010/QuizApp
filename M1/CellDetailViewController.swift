@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CellDetailViewController : UIViewController, UITextViewDelegate {
+class CellDetailViewController : UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var questionText: UITextField!
     @IBOutlet weak var answerText: UITextField!
@@ -23,6 +23,7 @@ class CellDetailViewController : UIViewController, UITextViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.setRightBarButton(editButtonItem, animated: false)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -86,8 +87,8 @@ class CellDetailViewController : UIViewController, UITextViewDelegate {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-            textField.resignFirstResponder()
-            return true
+        textField.resignFirstResponder()
+        return true
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
