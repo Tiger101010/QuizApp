@@ -13,6 +13,36 @@ class TableViewController: UITableViewController {
     private var listDataSource: ListDataSource?
     private var prevEditStatus: Bool = false
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        listDataSource = ListDataSource()
+        tableView.dataSource = listDataSource
+    
+        setEditing(false, animated: false)
+        navigationItem.setLeftBarButton(editButtonItem, animated: false)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        tableView.reloadData()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier{
+            case "Add": print("Adding")
+            case "Edit" :
+                if let row = tableView.indexPathForSelectedRow?.row {
+                    let question = ScoreModel.sc.blk[row]
+                    let detailViewController = segue.destination as! CellDetailViewController
+                    detailViewController.question = question
+                    detailViewController.index = row
+            }
+            default:
+                    preconditionFailure("Unexpected segue identifier.")
+            }
+    }
+    
     override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
         if(prevEditStatus != editing && editing == false) {
@@ -39,15 +69,6 @@ class TableViewController: UITableViewController {
         }
         
         prevEditStatus = editing
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        listDataSource = ListDataSource()
-        tableView.dataSource = listDataSource
-    
-        setEditing(false, animated: false)
-        navigationItem.setRightBarButton(editButtonItem, animated: false)
     }
 }
 

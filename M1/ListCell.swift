@@ -10,9 +10,11 @@ class ListCell: UITableViewCell {
 
     @IBOutlet var questionLabel: UILabel!
     @IBOutlet var answerLabel: UILabel!
-
-    func configure(question: String, answer: String) {
+    @IBOutlet weak var dateLabel: UILabel!
+    
+    func configure(question: String, answer: String, date: String) {
         questionLabel.text = question
         answerLabel.text = answer
+        dateLabel.text = date
     }
 }

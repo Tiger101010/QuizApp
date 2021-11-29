@@ -24,8 +24,8 @@ extension ListDataSource: UITableViewDataSource {
             fatalError("Unable to dequeue Cell")
         }
         let q = ScoreModel.sc.blk[indexPath.row]
-        cell.configure(question: q.question, answer: q.answer)
-        //tableView.reloadRows(at: [indexPath], with: .none)
+        cell.configure(question: q.question, answer: q.answer, date: q.date)
+        tableView.reloadRows(at: [indexPath], with: .none)
 
         return cell
     }

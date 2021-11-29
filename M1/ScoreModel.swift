@@ -80,5 +80,19 @@ class ScoreModel {
         answered = 0
     }
     
+    func addQuestion(q: Question) {
+        if(q.question != "") {
+            self.blk.append(q)
+            total += 1
+            reset()
+        }
+    }
+    
+    func modifyQuestion(index: Int, q: Question) {
+        q.updateTime()
+        self.blk[index] = q
+        reset()
+    }
+    
     
 }
