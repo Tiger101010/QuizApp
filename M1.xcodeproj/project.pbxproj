@@ -11,6 +11,11 @@
 		5A1C4A3B2751A84A00396CDA /* ListDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A1C4A3A2751A84A00396CDA /* ListDataSource.swift */; };
 		5A1C4A412753023900396CDA /* CellDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A1C4A402753023900396CDA /* CellDetailViewController.swift */; };
 		5A1C4A452754519B00396CDA /* ImagePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A1C4A442754519B00396CDA /* ImagePickerController.swift */; };
+		5A1C4A4727555D2800396CDA /* CodableImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A1C4A4627555D2800396CDA /* CodableImage.swift */; };
+		5A1C4A4B2755847200396CDA /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A1C4A4A2755847200396CDA /* RootViewController.swift */; };
+		5A1C4A4D2756C58A00396CDA /* Line.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A1C4A4C2756C58A00396CDA /* Line.swift */; };
+		5A1C4A4F2756C5AC00396CDA /* DrawView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A1C4A4E2756C5AC00396CDA /* DrawView.swift */; };
+		5A1C4A512756C91600396CDA /* DrawViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A1C4A502756C91600396CDA /* DrawViewController.swift */; };
 		5A22DC35274ED5D2002086FE /* ScoreModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A22DC34274ED5D2002086FE /* ScoreModel.swift */; };
 		5A22DC39274F61B9002086FE /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A22DC38274F61B9002086FE /* TableViewController.swift */; };
 		5AC43947274DA26F0045DB4E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AC43946274DA26F0045DB4E /* AppDelegate.swift */; };
@@ -49,6 +54,11 @@
 		5A1C4A3A2751A84A00396CDA /* ListDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListDataSource.swift; sourceTree = "<group>"; };
 		5A1C4A402753023900396CDA /* CellDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellDetailViewController.swift; sourceTree = "<group>"; };
 		5A1C4A442754519B00396CDA /* ImagePickerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerController.swift; sourceTree = "<group>"; };
+		5A1C4A4627555D2800396CDA /* CodableImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableImage.swift; sourceTree = "<group>"; };
+		5A1C4A4A2755847200396CDA /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
+		5A1C4A4C2756C58A00396CDA /* Line.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Line.swift; sourceTree = "<group>"; };
+		5A1C4A4E2756C5AC00396CDA /* DrawView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawView.swift; sourceTree = "<group>"; };
+		5A1C4A502756C91600396CDA /* DrawViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawViewController.swift; sourceTree = "<group>"; };
 		5A22DC34274ED5D2002086FE /* ScoreModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreModel.swift; sourceTree = "<group>"; };
 		5A22DC38274F61B9002086FE /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		5AC43943274DA26F0045DB4E /* M1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = M1.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -98,6 +108,7 @@
 			isa = PBXGroup;
 			children = (
 				5A1C4A382751A48000396CDA /* ListCell.swift */,
+				5A1C4A4E2756C5AC00396CDA /* DrawView.swift */,
 			);
 			name = view;
 			sourceTree = "<group>";
@@ -164,6 +175,8 @@
 				5A22DC38274F61B9002086FE /* TableViewController.swift */,
 				5A1C4A402753023900396CDA /* CellDetailViewController.swift */,
 				5A1C4A442754519B00396CDA /* ImagePickerController.swift */,
+				5A1C4A4A2755847200396CDA /* RootViewController.swift */,
+				5A1C4A502756C91600396CDA /* DrawViewController.swift */,
 			);
 			name = controller;
 			sourceTree = "<group>";
@@ -174,6 +187,8 @@
 				5AC43980274DCCCB0045DB4E /* Question.swift */,
 				5A22DC34274ED5D2002086FE /* ScoreModel.swift */,
 				5A1C4A3A2751A84A00396CDA /* ListDataSource.swift */,
+				5A1C4A4627555D2800396CDA /* CodableImage.swift */,
+				5A1C4A4C2756C58A00396CDA /* Line.swift */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -311,13 +326,18 @@
 			files = (
 				5A22DC35274ED5D2002086FE /* ScoreModel.swift in Sources */,
 				5AC43947274DA26F0045DB4E /* AppDelegate.swift in Sources */,
+				5A1C4A4F2756C5AC00396CDA /* DrawView.swift in Sources */,
 				5A1C4A3B2751A84A00396CDA /* ListDataSource.swift in Sources */,
+				5A1C4A512756C91600396CDA /* DrawViewController.swift in Sources */,
 				5AC4397B274DC3320045DB4E /* BLKViewController.swift in Sources */,
 				5A22DC39274F61B9002086FE /* TableViewController.swift in Sources */,
 				5AC43979274DC3070045DB4E /* MCQViewController.swift in Sources */,
 				5AC43949274DA26F0045DB4E /* SceneDelegate.swift in Sources */,
 				5A1C4A452754519B00396CDA /* ImagePickerController.swift in Sources */,
 				5A1C4A392751A48000396CDA /* ListCell.swift in Sources */,
+				5A1C4A4D2756C58A00396CDA /* Line.swift in Sources */,
+				5A1C4A4727555D2800396CDA /* CodableImage.swift in Sources */,
+				5A1C4A4B2755847200396CDA /* RootViewController.swift in Sources */,
 				5A1C4A412753023900396CDA /* CellDetailViewController.swift in Sources */,
 				5AC43981274DCCCB0045DB4E /* Question.swift in Sources */,
 				5AC4397D274DC3590045DB4E /* ScoreViewController.swift in Sources */,

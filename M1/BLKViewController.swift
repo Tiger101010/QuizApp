@@ -23,7 +23,9 @@ class BLKViewController: UIViewController {
         super.viewDidLoad()
         answerField.delegate = self
         questionLabel.text = ScoreModel.sc.getBLKQues(index: currentQuestionIndex)
-        imgView.image = ScoreModel.sc.blk[currentQuestionIndex].img
+        if(ScoreModel.sc.blk[currentQuestionIndex].img != nil) {
+            imgView.image = ScoreModel.sc.blk[currentQuestionIndex].loadImg()
+        }
         answerField.text = "Your Answer Here"
         answerField.textColor = .systemGray
         
@@ -49,7 +51,7 @@ class BLKViewController: UIViewController {
             currentQuestionIndex = 0
         }
         questionLabel.text = ScoreModel.sc.getBLKQues(index: currentQuestionIndex)
-        imgView.image = ScoreModel.sc.blk[currentQuestionIndex].img
+        imgView.image = ScoreModel.sc.blk[currentQuestionIndex].loadImg()
         answerField.text = "Your Answer Here"
         answerField.textColor = .systemGray
         

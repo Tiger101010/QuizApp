@@ -9,12 +9,15 @@ import UIKit
 
 class CellDetailViewController : UIViewController, UITextFieldDelegate {
     
+    private var prevEditStatus: Bool = false
+    
     @IBOutlet weak var questionText: UITextField!
     @IBOutlet weak var answerText: UITextField!
     @IBOutlet weak var dateText: UILabel!
     
     @IBOutlet weak var uploadImgBtn: UIBarButtonItem!
     @IBOutlet weak var deleteImgBtn: UIBarButtonItem!
+    @IBOutlet weak var drawBtn: UIBarButtonItem!
     @IBOutlet weak var imgView: UIImageView!
     
     var question: Question = Question(q: "Question Here", ans: "Answer Here", choices: [""])
@@ -23,7 +26,12 @@ class CellDetailViewController : UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.setRightBarButton(editButtonItem, animated: false)
-        
+        if index != ScoreModel.sc.blk.count {
+            question = ScoreModel.sc.blk[index]
+        }
+        if(question.img != nil) {
+            self.imgView.image = question.loadImg()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -36,15 +44,32 @@ class CellDetailViewController : UIViewController, UITextFieldDelegate {
         
         if index != ScoreModel.sc.blk.count {
             if(question.img != nil) {
-                self.imgView.image = question.img
+                self.imgView.image = question.loadImg()
             }
         }
+        //setEditing(false, animated: true)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier{
+            case "Draw":
+                setEditing(false, animated: true)
+                question.question = questionText.text ?? "Question Here"
+                question.answer = answerText.text ?? "Answer Here"
+                let drawViewController = segue.destination as! DrawViewController
+                drawViewController.loadView()
+                drawViewController.index = index
+                drawViewController.drawView.finishedLines = question.drawing
+                drawViewController.question = question
+            default:
+                preconditionFailure("Unexpected segue identifier.")
+            }
     }
     
     @IBAction func uploadImg(_ sender: Any) {
         ImagePickerManager().pickImage(self){ image in
             self.imgView.image = image
-            self.question.img = image
+            self.question.saveImg(img: image)
         }
     }
     
@@ -58,6 +83,7 @@ class CellDetailViewController : UIViewController, UITextFieldDelegate {
         answerText.isEnabled = enabled
         uploadImgBtn.isEnabled = enabled
         deleteImgBtn.isEnabled = enabled
+        drawBtn.isEnabled = enabled
     }
     
     
@@ -83,6 +109,8 @@ class CellDetailViewController : UIViewController, UITextFieldDelegate {
                 ScoreModel.sc.modifyQuestion(index: index, q: question)
             }
             enableBtns(enabled: false)
+            reset()
+            ScoreModel.sc.save()
         }
     }
     
@@ -93,6 +121,29 @@ class CellDetailViewController : UIViewController, UITextFieldDelegate {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
+    }
+    
+    func reset() {
+        print("reset start")
+        guard let viewControllers = self.tabBarController?.viewControllers else {print("failed"); return}
+        for viewController in viewControllers {
+            if let controller = viewController as? UINavigationController {
+                if let blkController = controller.viewControllers.first as? BLKViewController{
+                    print(type(of: blkController))
+                    ScoreModel.sc.reset()
+                    
+                    blkController.loadView()
+                    blkController.viewDidLoad()
+                }
+                if let mcqController = controller.viewControllers.first as? MCQViewController{
+                    print(type(of: mcqController))
+                    
+                    mcqController.loadView()
+                    mcqController.viewDidLoad()
+                }
+            }
+        }
+        print("done")
     }
 }
 

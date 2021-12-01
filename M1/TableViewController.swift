@@ -37,6 +37,7 @@ class TableViewController: UITableViewController {
                     let detailViewController = segue.destination as! CellDetailViewController
                     detailViewController.question = question
                     detailViewController.index = row
+                    print("Row: " + String(row))
             }
             default:
                     preconditionFailure("Unexpected segue identifier.")
@@ -66,6 +67,7 @@ class TableViewController: UITableViewController {
                 }
             }
             print("done")
+            ScoreModel.sc.save()
         }
         
         prevEditStatus = editing

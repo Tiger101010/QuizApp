@@ -7,13 +7,30 @@
 
 import Foundation
 
-class ScoreModel {
+class ScoreModel: ObservableObject {
     static let sc = ScoreModel()
     var answered: Int = 0
     var correct: Int = 0
     var total = 7
-    var mcq = [Question]()
-    var blk = [Question]()
+    @Published var mcq = [Question]()
+    @Published var blk = [Question]()
+    
+    private static var documentsFolder: URL {
+        do {
+            return try FileManager.default.url(for: .documentDirectory,
+                                               in: .userDomainMask,
+                                               appropriateFor: nil,
+                                               create: false)
+        } catch {
+            fatalError("Can't find documents directory.")
+        }
+    }
+    private static var mcqFileURL: URL {
+        return documentsFolder.appendingPathComponent("quiz_mcq.data")
+    }
+    private static var blkFileURL: URL {
+        return documentsFolder.appendingPathComponent("quiz_blk.data")
+    }
     
     init() {
         var questions: [String] = ["What is 7+7?","What is 1+1?","What is 2+2?"]
@@ -32,6 +49,51 @@ class ScoreModel {
         for i in 0...3 {
             let q = Question(q: questions[i], ans: answer[i], choices: choices[i])
             blk.append(q)
+        }
+    }
+    
+    func load() {
+        print("loading...")
+        DispatchQueue.global(qos: .background).async { [weak self] in
+            guard let mcqData = try? Data(contentsOf: Self.mcqFileURL) else {return}
+            guard let blkData = try? Data(contentsOf: Self.blkFileURL) else {return}
+            
+            guard let mcqDecode = try? JSONDecoder().decode([Question].self, from: mcqData) else {
+                fatalError("Can't decode saved mcq data.")
+            }
+            guard let blkDecode = try? JSONDecoder().decode([Question].self, from: blkData) else {
+                fatalError("Can't decode saved blk data.")
+            }
+            DispatchQueue.main.async {
+                self?.mcq = mcqDecode
+            }
+            DispatchQueue.main.async {
+                self?.blk = blkDecode
+            }
+        }
+    }
+    
+    func save() {
+        print("saving...")
+        DispatchQueue.global(qos: .background).async { [weak self] in
+            guard let mcq = self?.mcq else { fatalError("Self out of scope") }
+            guard let blk = self?.blk else { fatalError("Self out of scope") }
+            
+            guard let mcqData = try? JSONEncoder().encode(mcq) else { fatalError("Error encoding data") }
+            do {
+                let outfile = Self.mcqFileURL
+                try mcqData.write(to: outfile)
+            } catch {
+                fatalError("Can't write to file")
+            }
+            
+            guard let blkData = try? JSONEncoder().encode(blk) else { fatalError("Error encoding data") }
+            do {
+                let outfile = Self.blkFileURL
+                try blkData.write(to: outfile)
+            } catch {
+                fatalError("Can't write to file")
+            }
         }
     }
     
@@ -70,11 +132,14 @@ class ScoreModel {
     }
     
     func reset() {
+        total = 0
         for q in blk {
+            total += 1
             q.isAnswered = false
         }
         for q in mcq {
             q.isAnswered = false
+            total += 1
         }
         correct = 0
         answered = 0
@@ -86,12 +151,14 @@ class ScoreModel {
             total += 1
             reset()
         }
+        save()
     }
     
     func modifyQuestion(index: Int, q: Question) {
         q.updateTime()
         self.blk[index] = q
         reset()
+        save()
     }
     
     
