@@ -20,7 +20,7 @@ class DrawViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        guard let img: UIImage = drawView.takeScreenshot() else {return}
+        guard let img: UIImage = drawView.takeScreenshot(false) else {return}
         print("index: " + String(index))
         print(ScoreModel.sc.blk.count)
         if(index == ScoreModel.sc.blk.count) {
